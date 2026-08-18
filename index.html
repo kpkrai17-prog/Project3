@@ -1,1 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Secret Document: For Her Eyes Only 🤫</title>
+  <style>
+    :root {
+      --bg-color: #fff0f5;
+      --card-bg: #ffffff;
+      --primary: #ff4757;
+      --primary-hover: #ff6b81;
+      --text-dark: #2f3542;
+      --text-muted: #747d8c;
+      --accent-pink: #ffdae0;
+      --accent-purple: #f3a683;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffeaa7 0%, #ff7675 100%);
+      background-attachment: fixed;
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Floating Hearts Background Effect */
+    .bg-heart {
+      position: fixed;
+      font-size: 20px;
+      user-select: none;
+      pointer-events: none;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Lock Screen Card */
+    .lock-screen {
+      background: var(--card-bg);
+      padding: 40px 30px;
+      border-radius: 28px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      position: relative;
+      z-index: 10;
+      transition: all 0.5s ease;
+    }
+
+    .face-scanner {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: #ffe6ec;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 55px;
+      border: 4px dashed var(--primary);
+      animation: pulse 2s infinite;
+      position: relative;
+    }
+
+    .scan-line {
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 71, 87, 0.8);
+      top: 0;
+      border-radius: 2px;
+      animation: scan 1.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes scan {
+      0% { top: 10%; }
+      100% { top: 85%; }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.4); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(255, 71, 87, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+    }
+
+    .pin-input {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid var(--accent-pink);
+      border-radius: 14px;
+      font-size: 22px;
+      text-align: center;
+      letter-spacing: 8px;
+      outline: none;
+      margin-top: 15px;
+      transition: border 0.3s;
+    }
+
+    .pin-input:focus {
+      border-color: var(--primary);
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #ff4757, #ff6b81);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 17px;
+      font-weight: bold;
+      border-radius: 14px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 15px;
+      box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .error-msg {
+      color: #ff4757;
+      font-size: 14px;
+      margin-top: 12px;
+      font-weight: bold;
+      display: none;
+    }
+
+    /* Main Romantic Content Container */
+    .content-container {
+      display: none;
+      max-width: 650px;
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 28px;
+      padding: 40px 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      position: relative;
+      z-index: 10;
+      animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h1 {
+      color: var(--primary);
+      font-size: 30px;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    .sub-title {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+
+    .section {
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+
+    .section h2 {
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .love-box {
+      background: #fff0f3;
+      padding: 20px;
+      border-radius: 18px;
+      border-left: 5px solid var(--primary);
+      font-size: 16px;
+    }
+
+    /* Gallery Styling */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 25px 0;
+    }
+
+    .gallery-card {
+      background: #fff8f9;
+      padding: 12px;
+      border-radius: 18px;
+      border: 1px solid var(--accent-pink);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .gallery-card:hover {
+      transform: scale(1.03);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .gallery-card p {
+      font-size: 14px;
+      margin-top: 10px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    /* Feature Cards (Eyes, Lips, Face) */
+    .feature-card {
+      background: #fafafa;
+      border: 2px dashed var(--accent-pink);
+      padding: 18px;
+      border-radius: 16px;
+      margin-bottom: 15px;
+      transition: background 0.3s;
+    }
+
+    .feature-card:hover {
+      background: #fff5f7;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    /* Mean Girl Section */
+    .mean-section {
+      background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      margin-top: 35px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .mean-section h2 {
+      justify-content: center;
+      color: #d63031;
+    }
+
+    .mean-section p {
+      font-size: 15px;
+      color: #2d3436;
+      font-weight: 500;
+      margin-top: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Hearts in Background -->
+  <div class="bg-heart" style="left: 10%; animation-delay: 0s;">💖</div>
+  <div class="bg-heart" style="left: 25%; animation-delay: 2s;">✨</div>
+  <div class="bg-heart" style="left: 60%; animation-delay: 1s;">🌸</div>
+  <div class="bg-heart" style="left: 85%; animation-delay: 3s;">💕</div>
+
+  <!-- Lock Screen Area -->
+  <div class="lock-screen" id="lockScreen">
+    <div class="face-scanner">
+      👩‍🦰
+      <div class="scan-line"></div>
+    </div>
+    <h2 style="font-size: 22px; color: var(--text-dark);">Face ID Scanner</h2>
+    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
+      <strong>⚠️ SCAN ERROR:</strong> Face is way too cute for standard camera! Please enter your secret passcode to enter.
+    </p>
+
+    <input type="password" id="pinInput" class="pin-input" maxlength="4" placeholder="••••" autofocus>
+    <button class="btn" onclick="checkPin()">Unlock Confidential Files 🔑</button>
+    <div class="error-msg" id="errorMsg">Wrong passcode, silly! Try again 😉</div>
+  </div>
+
+  <!-- Main Romantic Content -->
+  <div class="content-container" id="mainContent">
+    <h1>Access Granted! 🎉</h1>
+    <p class="sub-title">Welcome to the page dedicated entirely to you.</p>
+
+    <!-- How Much I Love You -->
+    <div class="section">
+      <h2>❤️ How Much I Love You</h2>
+      <div class="love-box">
+        If loving you was a full-time job, I'd be the most hardworking person in the world! 
+        Honestly, I love you way more than words can explain—more than late-night snacks, more than sleeping in, and definitely more than my favorite video games/movies. You’re my favorite notification, my comfort person, and my happiest thought every single day.
+      </div>
+    </div>
+
+    <!-- Some Lines For Her -->
+    <div class="section">
+      <h2>✨ Just A Few Lines For You</h2>
+      <p style="font-style: italic; background: #f8efba; padding: 15px; border-radius: 14px; color: #57606f;">
+        "Out of 8 billion people on this planet, somehow I got lucky enough to find you.<br>
+        You bring color into my world, butterflies to my stomach, and absolute chaos (the good kind) into my life."
+      </p>
+    </div>
+
+    <!-- Cat & Butterfly Gallery -->
+    <div class="gallery">
+      <div class="gallery-card">
+        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80" alt="Cute Cat">
+        <p>Soft & sassy like a kitty 🐱</p>
+      </div>
+      <div class="gallery-item gallery-card">
+        <img src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=600&q=80" alt="Butterfly">
+        <p>Pretty like a butterfly 🦋</p>
+      </div>
+    </div>
+
+    <!-- Features Descriptions -->
+    <div class="section">
+      <h2>🔍 Detailed Report on Your Features</h2>
+      
+      <div class="feature-card">
+        <h3>👀 Your Eyes</h3>
+        <p>Your eyes are dangerous. Like, seriously. One look from you and I completely forget what I was talking about. They are so pretty, bright, and full of emotion. I could stare into them all day without getting bored.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>💋 Your Lips</h3>
+        <p>Your lips hold the absolute best smile in the universe. When you laugh or smile genuinely, it literally lights up the whole room. (Plus, they look super soft and 100% kissable at all times!)</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>👑 Your Face</h3>
+        <p>Your face is a literal masterpiece. Whether you just woke up with messy hair, or you're completely dressed up, you are effortlessly gorgeous. God really took extra time making you!</p>
+      </div>
+    </div>
+
+    <!-- Playful "How Mean You Are" Section -->
+    <div class="mean-section">
+      <h2>😈 BUT... Let’s Talk About How MEAN You Are!</h2>
+      <p>
+        Don't think you're getting away completely innocent! You steal my heart without asking, live rent-free in my brain 24/7, tease me endlessly, and leave me smiling like an idiot looking at my phone.
+      </p>
+      <p style="margin-top: 10px; font-weight: bold; color: var(--primary);">
+        You're a bully... but you're MY favorite bully in the whole world! 💖
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function checkPin() {
+      const pin = document.getElementById('pinInput').value;
+      const errorMsg = document.getElementById('errorMsg');
+      const lockScreen = document.getElementById('lockScreen');
+      const mainContent = document.getElementById('mainContent');
+
+      // Password set to 1612
+      if (pin === "1612") {
+        lockScreen.style.display = "none";
+        mainContent.style.display = "block";
+      } else {
+        errorMsg.style.display = "block";
+        document.getElementById('pinInput').value = "";
+      }
+    }
+
+    // Press Enter key to unlock
+    document.getElementById("pinInput").addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        checkPin();
+      }
+    });
+  </script>
+</body>
+</html>
 
